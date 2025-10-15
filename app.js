@@ -40,7 +40,7 @@ app.get('/recurso/ultimo',(req,res)=>{
 })
 
 //mostrar recursos filtrados
-app.get('/recurso/:preco',(req,res)=>{
+app.get('/recurso/preco/:preco',(req,res)=>{
     const preco= parseInt(req.params.preco)
     const valor=ingressos.filter(p=>p.preco===preco)
     if(valor){
@@ -51,7 +51,7 @@ app.get('/recurso/:preco',(req,res)=>{
 })
 
 //buscar
-app.get('/recurso/:id',(req,res)=>{
+app.get('/recurso/id/:id',(req,res)=>{
     const id= parseInt(req.params.id)
     const recursos=ingressos.find(p=>p.id===id)
     if(recursos){
@@ -106,7 +106,7 @@ app.put('/recurso/:id',(req,res)=>{
 
 //deletar
 app.delete('/recurso/:id', (req,res)=>{
-    const id=pae(req.params.id)
+    const id=parseInt(req.params.id)
     const index=ingressos.findIndex(p=>p.id===id)
     if(index!==-1){
         const deletarfilme=ingressos.splice(index, 1)
@@ -119,4 +119,5 @@ app.delete('/recurso/:id', (req,res)=>{
 
 app.listen(port,()=>{
     console.log(`esta pegando na porta:${port}`)
+
 })
