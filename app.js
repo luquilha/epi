@@ -80,11 +80,16 @@ app.post('/recursos', (req, res) => {
     return res.status(400).json({ mensagem: 'Os dados devem ser um array.' });
   }
 
-  // Adiciona os novos recursos ao array
+  // Adiciona os novos recursos ao array existente
   ingressos = ingressos.concat(novosRecursos);
 
-  return res.status(201).json({ mensagem: 'Recursos cadastrados com sucesso!', recursos });
+  return res.status(201).json({ 
+    id: ingressos.length+1,
+    mensagem: 'Recursos cadastrados com sucesso!',
+    recursos: ingressos 
+  });
 });
+
 //atualizar
 app.put('/recurso/:id',(req,res)=>{
     const id=parseInt(req.params.id)
